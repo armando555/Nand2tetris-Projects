@@ -16,15 +16,43 @@
 D=A
 @r1
 M=D//GUARDO EL VALOR DONDE EMPIEZA LA PANTALLA EN 16
+@r3
+M=D
 @24575
 D=A
 @r2
 M=D//GUARDO EL VALOR DONDE TERMINA LA PANTALLA EN 17
-
-//poner negro
-@r1
+@24576 // teclado
+D=M // guardo el dato del teclado 
+@27
+D;JNE // si tengo presiono la tecla pinto en negro
+@r3//PONER EN BLANCO//-------------------------------------
+A=M
+D=A+1
+M=0
+@r3
+M=D
+@r2
+A=M
+D=A-D
+@14
+D;JGT
+@0
+0;JMP
+@r1//PONER EN NEGRO //--------------------------------------
 A=M
 D=A+1
 M=-1
 @r1
 M=D
+@r2
+A=M
+D=A-D
+@27
+D;JGT
+@0
+0;JMP
+
+
+
+
