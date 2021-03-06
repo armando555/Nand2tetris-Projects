@@ -18,7 +18,7 @@ D;JEQ // si tengo presiono la tecla pinto en negro
 D=M // guardo el dato del teclado 
 @84
 D=D-A// SI ESTO ES = 0 ES PORQUE ES T
-@16//cambiar xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+@77//cambiar xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 D;JEQ // si tengo presiono la tecla pinto en negro
 @r5//PONER EN BLANCO//-------------------------------------
 A=M
@@ -75,8 +75,46 @@ D=D-A//REVISAR
 D;JNE
 @0
 0;JMP
-//-----------------------------------------------
-
+@16396//aca empiezo hacer triangulo
+D=A
+@r8//guardo la posición inicial
+M=D
+@r6//guardo 1 al que va ser el acumulado
+M=1
+@r7//guardo el valro de la potencia
+M=1
+@r6
+D=M
+@r8
+A=M
+M=D
+@r7
+D=M
+A=D
+D=D+A
+@r7
+M=D
+@r6
+A=M
+D=D+A
+@r6
+M=D
+@32
+D=A
+@r8
+A=M
+D=D+A
+@r8
+M=D
+@16876
+D=A
+@r8
+A=M
+D=D-A//REVISAR
+@85
+D;JNE
+@0
+0;JMP
 @35//cambiar ciclo infinito apra parar
 0;JMP
 
