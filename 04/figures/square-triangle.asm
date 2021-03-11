@@ -81,37 +81,37 @@ D=A
 M=D
 @r6//guardo 1 al que va ser el acumulado
 M=1
-@r7//guardo el valro de la potencia
+@r7//guardo el valro de la potencia siguiente
 M=1
 @r6
 D=M
-@r8
+@r8//guardo el valor de valor del acumulado en la posuición inicial
 A=M
 M=D
-@r7
+@r7//obtengo la potencia siguiente
 D=M
 A=D
 D=D+A
-@r7
+@r7//guardo la potencia siguiente
 M=D
-@r6
+@r6//aca sumo el valor de la potencia actual más la siguiente
 A=M
 D=D+A
-@r6
+@r6//guardo la potencia actual + la siguiente
 M=D
-@32
+@32//sumo 32 registros o pixeles
 D=A
-@r8
+@r8//aumento el valor de la posicion para empezar a pintar la siguiente linea
 A=M
 D=D+A
 @r8
 M=D
-@16876
+@16876//verifico que el valor final - inicial sea diferente de cero para entrar en ciclo
 D=A
 @r8
 A=M
 D=D-A//REVISAR
-@85
+@85//salto a la linea 85
 D;JNE
 @0
 0;JMP

@@ -42,8 +42,11 @@ CHIP CPU {
     // Put your code here:
     Not(in=instruction[15], out=c0);
     Mux16(a=outALU, b=instruction[0..15], sel=c0, out=outA);
-    ARegister(in=outA, load=instruction[5], out=registerA, out[0..14]=addressM);
-    DRegister(in=outALU, load=instruction[4], out=registerD);
+    And(a=instruction[15], b=instruction[5], out=c1);
+    Xor(a=c0, b=c1, out=CARegister);
+    And(a=instruction[15], b=instruction[4], out=CDRegister);
+    ARegister(in=outA, load=CARegister, out=registerA, out[0..14]=addressM);
+    DRegister(in=outALU, load=CDRegister, out=registerD);
     Mux16(a=registerA, b=inM, sel=instruction[12], out=outMe);
     ALU(x=registerD, y=outMe, zx=instruction[11], nx=instruction[10], zy=instruction[9], ny=instruction[8], f=instruction[7], no=instruction[6], out=outM, out=outALU, zr=zr, ng=ng);
     And(a=instruction[15], b=instruction[2], out=jumpLt);
@@ -54,11 +57,9 @@ CHIP CPU {
     And(a=notng, b=notzr, out=outngzr);
     And(a=jumpLt, b=ng, out=JLT);
     And(a=jumpEq, b=zr, out=JEQ);
-    And(a=jumpGt, b=notng, out=JGT);
+    And(a=jumpGt, b=outngzr, out=JGT);
     Or(a=JLT, b=JEQ, out=outjmps);
-    Or(a=JEQ, b=JGT, out=outjmps1);
-    Xor(a=outjmps, b=outjmps1, out=outjmps2);
-    And(a=outngzr, b=outjmps2, out=outpc);
+    Or(a=outjmps, b=JGT, out=outpc);
     PC(in=registerA, load=outpc, inc=true, reset=reset, out=outpcj, out[0..14]=pc);
     And(a=instruction[3], b=instruction[15], out=writeM);
 }
