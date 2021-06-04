@@ -1,0 +1,4 @@
+name = "asd"
+sum = add(3,multiply(4,5))
+print ("Hello",name)
+print ("sum is ",sum)
